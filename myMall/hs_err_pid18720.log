@@ -1,0 +1,95 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_STACK_OVERFLOW (0xc00000fd) at pc=0x00000000633f5077, pid=18720, tid=0x0000000000003a38
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_241-b07) (build 1.8.0_241-b07)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.241-b07 mixed mode windows-amd64 compressed oops)
+# Problematic frame:
+# V  [jvm.dll+0x215077]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000000001f533800):  JavaThread "DubboServerHandler-192.168.1.153:20880-thread-121" daemon [_thread_in_vm, id=14904, stack(0x0000000081a00000,0x0000000081b00000)]
+
+siginfo: ExceptionCode=0xc00000fd, ExceptionInformation=0x0000000000000001 0x0000000081afc630 
+
+Registers:
+RAX=0x0000000081afc630, RBX=0x0000000000000004, RCX=0x0000000000003000, RDX=0x0000000000000006
+RSP=0x0000000081aff630, RBP=0x0000000000000000, RSI=0x0000000081aff630, RDI=0x0000000000000004
+R8 =0x0000000000000006, R9 =0x000000001f381c40, R10=0x00000000179be2f0, R11=0x0000000081a0a148
+R12=0x000000001f381c40, R13=0x000000001f533800, R14=0x0000000081aff6f8, R15=0x00000000179be2f0
+RIP=0x00000000633f5077, EFLAGS=0x0000000000010206
+
+Top of Stack: (sp=0x0000000081aff630)
+0x0000000081aff630:   0000f8fd35451d8c 0000000100006c48
+0x0000000081aff640:   000000001f533800 000000001f381c40
+0x0000000081aff650:   00000000ffffffff 00000000633f5fa7
+0x0000000081aff660:   0000000081aff760 00000000179be2f0
+0x0000000081aff670:   000000001f533800 00000000632a10e3
+0x0000000081aff680:   0000000081aff6c0 000000001f533800
+0x0000000081aff690:   0000000081aff750 000000001f533800
+0x0000000081aff6a0:   00000000179be2f0 000000001f533800
+0x0000000081aff6b0:   0000000003413be0 000000001f533800
+0x0000000081aff6c0:   00000000179be2f0 000000001f533800
+0x0000000081aff6d0:   00000000179be2f0 000000001f533800
+0x0000000081aff6e0:   0000000000000001 00000000179be2f0
+0x0000000081aff6f0:   000000001f533800 000000001ad500b0
+0x0000000081aff700:   000000001f533800 00000000632a284d
+0x0000000081aff710:   0000000081affa18 0000000100006c48
+0x0000000081aff720:   00000001006afca0 0000000000000000 
+
+Instructions: (pc=0x00000000633f5077)
+0x00000000633f5057:   48 89 6c 24 30 33 ed 66 90 e8 3b 5c 08 00 ff c3
+0x00000000633f5067:   48 63 c8 48 8b c6 48 0f af cf 48 ff c7 48 2b c1
+0x00000000633f5077:   89 28 48 63 c3 48 3b 05 25 08 5a 00 7e db 48 8b
+0x00000000633f5087:   6c 24 30 48 8b 5c 24 38 48 8b 74 24 40 48 83 c4 
+
+
+Register to memory mapping:
+
+RAX=0x0000000081afc630 is pointing into the stack for thread: 0x000000001f533800
+RBX=0x0000000000000004 is an unknown value
+RCX=0x0000000000003000 is an unknown value
+RDX=0x0000000000000006 is an unknown value
+RSP=0x0000000081aff630 is pointing into the stack for thread: 0x000000001f533800
+RBP=0x0000000000000000 is an unknown value
+RSI=0x0000000081aff630 is pointing into the stack for thread: 0x000000001f533800
+RDI=0x0000000000000004 is an unknown value
+R8 =0x0000000000000006 is an unknown value
+R9 =0x000000001f381c40 is an unknown value
+R10={method} {0x00000000179be2f8} 'run' '()V' in 'java/lang/Thread'
+R11=0x0000000081a0a148 is pointing into the stack for thread: 0x000000001f533800
+R12=0x000000001f381c40 is an unknown value
+R13=0x000000001f533800 is a thread
+R14=0x0000000081aff6f8 is pointing into the stack for thread: 0x000000001f533800
+R15={method} {0x00000000179be2f8} 'run' '()V' in 'java/lang/Thread'
+
+
+Stack: [0x0000000081a00000,0x0000000081b00000],  sp=0x0000000081aff630,  free space=1021k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x000000001f56c000 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-136" daemon [_thread_new, id=17728, stack(0x0000000000000000,0x0000000000000000)]
+  0x000000001f56b000 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-135" daemon [_thread_new, id=18672, stack(0x0000000000000000,0x0000000000000000)]
+  0x000000001f56e000 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-134" daemon [_thread_blocked, id=17220, stack(0x000000016ee20000,0x000000016ef20000)]
+  0x000000001f56d800 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-133" daemon [_thread_blocked, id=18900, stack(0x000000016dd10000,0x000000016de10000)]
+  0x000000001f540800 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-132" daemon [_thread_blocked, id=10852, stack(0x000000016cbf0000,0x000000016ccf0000)]
+  0x000000001f53f000 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-131" daemon [_thread_blocked, id=19140, stack(0x000000016bae0000,0x000000016bbe0000)]
+  0x000000001f53e000 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-130" daemon [_thread_blocked, id=17376, stack(0x000000016a9d0000,0x000000016aad0000)]
+  0x000000001f53f800 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-129" daemon [_thread_blocked, id=14692, stack(0x00000001698c0000,0x00000001699c0000)]
+  0x000000001f536800 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-128" daemon [_thread_blocked, id=6796, stack(0x00000001687b0000,0x00000001688b0000)]
+  0x000000001f53d800 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-127" daemon [_thread_blocked, id=11888, stack(0x00000001676a0000,0x00000001677a0000)]
+  0x000000001f536000 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-126" daemon [_thread_blocked, id=7800, stack(0x0000000166590000,0x0000000166690000)]
+  0x000000001f53c800 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-125" daemon [_thread_blocked, id=16680, stack(0x0000000165480000,0x0000000165580000)]
+  0x000000001f53b000 JavaThread "DubboServerHandler-192.168.1.153:20880-thread-124" daemon [_thread_blocked, id=19216, stack(0x0000000164370000,0x0000000164470000)]
+  

@@ -1,0 +1,83 @@
+server:
+  port: 7002
+
+spring:
+  application:
+    name: CommodityProvider
+  datasource:
+    url: jdbc:mysql://localhost:3306/commodity?useUnicode=true&characterEncoding=utf8&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=UTC
+    username: root
+    password: rootcuit
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 2
+    minIdle: 1
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: false
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,config
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    useGlobalDataSourceStat: true
+
+dubbo:
+  application:
+    name: account-provider       #服务名称
+  registry:
+    address: 192.168.1.153:2181    #注册中心服务地址
+    port: 2181                 #注册中心缺省端口，当address没有带端口时使用此端口作为缺省值
+    protocol: zookeeper        #注册中心地址协议
+    timeout: 10000             #注册中心请求超时时间
+    check: false               #注册中心不存在时，是否报错
+    subscribe: false           #是否向此注册中心订阅服务，如果设为false，将只注册，不订阅
+  protocol:
+    name: dubbo         #协议名称
+    host: 127.0.0.1
+    port: 20881
+  provider:
+    timeout: 3000       #远程服务调用超时时间(毫秒)
+
+# seata相关配置
+seata:
+  service:
+    grouplist:
+      default: 192.168.1.153:8091
+    vgroup-mapping:
+      service_tx_group: default
+      enable-degrade: false
+      disable-global-transaction: false
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: service_tx_group
+  client:
+    tm:
+      commit-retry-count: 3
+      rollback-retry-count: 3
+      enable-auto-data-source-proxy: false
+    rm:
+      report-success-enable: true
+      table-meta-check-enable: true
+      report-retry-count: 5
+      async-commit-buffer-limit: 1000
+  transport: # Netty相关配置start
+    type: TCP
+    server: NIO
+    heartbeat: true
+    serialization: seata
+    compressor: none
+    enable-client-batch-send-request: true #客户端事务消息请求是否批量合并发送(默认true)
+    shutdown:
+      wait: 3
+    thread-factory:
+      boss-thread-prefix: NettyBoss
+      worker-thread-prefix: NettyServerNIOWorker
+      server-executor-thread-prefix: NettyServerBizHandler
+      share-boss-worker: false
+      client-selector-thread-prefix: NettyClientSelector
+      client-selector-thread-size: 1
+      client-worker-thread-prefix: NettyClientWorkerThread

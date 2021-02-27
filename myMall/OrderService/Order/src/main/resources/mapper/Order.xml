@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsl.order.persistence.Order">
+    <select id="queryOrder" parameterType="com.zsl.order.entitys.OrderLog" resultType="com.zsl.order.entitys.OrderLog">
+        select id, order_no, user_id, commodity_id, `count`, amount
+        from `order`
+        where user_id = #{userId} and commodity_id = #{commodityId}
+    </select>
+
+    <insert id="createOrder" parameterType="com.zsl.order.entitys.OrderLog">
+        insert into `order`(id, order_no, user_id, commodity_id, `count`, amount)
+        values (#{id}, #{orderNo}, #{userId}, #{commodityId}, #{count}, #{amount})
+    </insert>
+</mapper>

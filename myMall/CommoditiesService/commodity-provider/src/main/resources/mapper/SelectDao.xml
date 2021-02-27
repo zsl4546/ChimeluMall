@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsl.commodityprovider.persistence.SelectDao">
+    <resultMap id="commodity" type="com.zsl.entitys.Commodity">
+        <id property="id" column="id"></id>
+        <result property="titleName" column="title_name"></result>
+        <result property="fileName" column="file_name"></result>
+        <result property="price" column="price"></result>
+        <result property="stock" column="stock"></result>
+    </resultMap>
+
+    <select id="findAllCommodities" resultMap="commodity">
+        select id, title_name, file_name, price, stock
+        from commodity
+    </select>
+
+    <select id="findCommodityById" parameterType="java.lang.Integer" resultMap="commodity">
+        select id, title_name, file_name, price, stock
+        from commodity
+        where id = #{id}
+    </select>
+</mapper>

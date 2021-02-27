@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsl.persistence.AccountManage">
+    <resultMap id="usersAccount" type="com.zsl.account.entitys.UserAccount">
+        <id column="account" property="account"></id>
+        <result column="password" property="password"></result>
+        <result column="name" property="name"></result>
+        <collection property="receivingInfos" ofType="com.zsl.account.entitys.ReceivingInfo">
+            <result column="address" property="address"></result>
+            <result column="phone" property="phone"></result>
+        </collection>
+    </resultMap>
+
+    <select id="findAllUserAccount" resultMap="usersAccount">
+        select u.account, password, `name`, address, phone
+        from `user` as u left join receiving as re
+        on u.account = re.account
+    </select>
+
+    <delete id="deleteUserAccount" parameterType="java.lang.String">
+        delete from `user`
+        where #{account} = account
+    </delete>
+
+    <update id="decrMoney" parameterType="com.zsl.account.entitys.UserAccount">
+        update `user`
+        set money = money - #{money}
+        where account = #{account}
+    </update>
+</mapper>

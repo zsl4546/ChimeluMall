@@ -1,0 +1,17 @@
+dubbo:
+  application:
+    name: account-consumer       #服务名称
+  registry:
+    address: 192.168.1.153:2181    #注册中心服务地址
+    port: 2181                 #注册中心缺省端口，当address没有带端口时使用此端口作为缺省值
+    protocol: zookeeper        #注册中心地址协议
+    timeout: 10000             #注册中心请求超时时间
+    check: false               #注册中心不存在时，是否报错
+    register: false            #是否向此注册中心注册服务，如果设为false，将只订阅，不注册
+  consumer:
+    check: false		#启动时检查提供者是否存在，true报错，false忽略
+    timeout: 3000		#远程服务调用超时时间(毫秒)
+  protocol:
+    host: 127.0.0.1
+server:
+  port: 7501

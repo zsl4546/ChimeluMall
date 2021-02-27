@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsl.persistence.Login">
+    <select id="login" parameterType="com.zsl.account.entitys.UserAccount" resultType="java.lang.String">
+        select account
+        from `user`
+        where #{account} = account and #{password} = password
+    </select>
+
+    <insert id="regist" parameterType="com.zsl.account.entitys.UserAccount">
+        insert into user(account, password)
+        values (#{account}, #{password})
+    </insert>
+</mapper>
